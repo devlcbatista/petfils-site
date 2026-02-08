@@ -43,39 +43,40 @@
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
+  /* Warm & Playful Color Palette */
+  --primary: #FF8C42;           /* Laranja vibrante */
+  --primary-foreground: #FFFFFF;
+  --sidebar-primary: #FF8C42;
+  --sidebar-primary-foreground: #FFFFFF;
+  --chart-1: #FF6B9D;           /* Coral */
+  --chart-2: #FFD93D;           /* Amarelo */
+  --chart-3: #A8E6CF;           /* Verde menta */
+  --chart-4: #FF8C42;
+  --chart-5: #FF6B9D;
+  --radius: 1rem;               /* Mais arredondado para playful */
+  --background: #FFFFFF;
+  --foreground: #2C3E50;
+  --card: #FFFBF5;
+  --card-foreground: #2C3E50;
+  --popover: #FFFFFF;
+  --popover-foreground: #2C3E50;
+  --secondary: #FFD93D;
+  --secondary-foreground: #2C3E50;
+  --muted: #F5F5F5;
+  --muted-foreground: #7F8C8D;
+  --accent: #A8E6CF;
+  --accent-foreground: #2C3E50;
+  --destructive: #E74C3C;
+  --destructive-foreground: #FFFFFF;
+  --border: #F0E6D8;
+  --input: #FFFBF5;
+  --ring: #FF8C42;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #2C3E50;
+  --sidebar-accent: #FFD93D;
+  --sidebar-accent-foreground: #2C3E50;
+  --sidebar-border: #F0E6D8;
+  --sidebar-ring: #FF8C42;
 }
 
 .dark {
@@ -119,6 +120,16 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+  .display-title {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
