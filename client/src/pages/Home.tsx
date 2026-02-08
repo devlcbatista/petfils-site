@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Star, Heart, Zap } from "lucide-react";
 import { useState } from "react";
 import AgendamentoForm from "@/components/AgendamentoForm";
+import GaleriaAntesDepois from "@/components/GaleriaAntesDepois";
 
 /**
  * Design: Warm & Playful
@@ -31,6 +32,9 @@ export default function Home() {
             </a>
             <a href="#produtos" className="text-gray-700 hover:text-orange-500 transition">
               Produtos
+            </a>
+            <a href="#galeria" className="text-gray-700 hover:text-orange-500 transition">
+              Galeria
             </a>
             <a href="#agendamento" className="text-gray-700 hover:text-orange-500 transition">
               Agendar
@@ -206,6 +210,18 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Galeria de Antes e Depois */}
+      <section id="galeria" className="py-16 md:py-24 bg-white">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Antes e Depois</h2>
+            <p className="text-lg text-gray-600">Veja a transformação dos nossos clientes felizes</p>
+          </div>
+
+          <GaleriaAntesDepois />
         </div>
       </section>
 
