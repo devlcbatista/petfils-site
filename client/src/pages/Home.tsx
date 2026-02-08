@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Star, Heart, Zap } from "lucide-react";
 import { useState } from "react";
+import AgendamentoForm from "@/components/AgendamentoForm";
 
 /**
  * Design: Warm & Playful
@@ -30,6 +31,9 @@ export default function Home() {
             </a>
             <a href="#produtos" className="text-gray-700 hover:text-orange-500 transition">
               Produtos
+            </a>
+            <a href="#agendamento" className="text-gray-700 hover:text-orange-500 transition">
+              Agendar
             </a>
             <a href="#contato" className="text-gray-700 hover:text-orange-500 transition">
               Contato
@@ -231,6 +235,20 @@ export default function Home() {
             >
               @petfils no Instagram
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Agendamento */}
+      <section id="agendamento" className="py-16 md:py-24 bg-gradient-to-b from-orange-50 to-white">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Agende seu Serviço</h2>
+            <p className="text-lg text-gray-600">Preencha o formulário abaixo e envie direto para nosso WhatsApp</p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <AgendamentoForm />
           </div>
         </div>
       </section>
