@@ -4,6 +4,7 @@ import { MapPin, Phone, Clock, Star, Heart, Zap } from "lucide-react";
 import { useState } from "react";
 import AgendamentoForm from "@/components/AgendamentoForm";
 import GaleriaAntesDepois from "@/components/GaleriaAntesDepois";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 /**
  * Design: Warm & Playful
@@ -14,6 +15,7 @@ import GaleriaAntesDepois from "@/components/GaleriaAntesDepois";
 
 export default function Home() {
   const [activeService, setActiveService] = useState<string | null>(null);
+  const { user } = useAuth();
 
   return (
     <div className="min-h-screen bg-white">
@@ -352,7 +354,7 @@ export default function Home() {
         }
 
         /* Hover effects */
-        .hover\\:scale-105:hover {
+        .hover\:scale-105:hover {
           transform: scale(1.05);
         }
       `}</style>

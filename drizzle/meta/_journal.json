@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1770595841750,
+      "tag": "0000_classy_invisible_woman",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1770595963060,
+      "tag": "0001_same_cable",
+      "breakpoints": true
+    }
+  ]
+}
