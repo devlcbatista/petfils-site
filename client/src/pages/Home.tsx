@@ -51,7 +51,7 @@ export default function Home() {
 
           <div className="flex items-center gap-2 sm:gap-3">
             <a
-              href="https://wa.me/5527999999999"
+              href="https://wa.me/552799261948"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-orange-500 hover:bg-orange-600 text-white px-3 sm:px-4 py-2 rounded-full transition transform hover:scale-105 text-xs sm:text-sm font-semibold whitespace-nowrap"
