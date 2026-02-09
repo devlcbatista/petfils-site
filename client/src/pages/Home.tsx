@@ -41,24 +41,10 @@ export default function Home() {
             <a href="#galeria" className="text-gray-700 hover:text-orange-500 transition text-sm lg:text-base">
               Galeria
             </a>
-            <a href="#agendamento" className="text-gray-700 hover:text-orange-500 transition text-sm lg:text-base">
-              Agendar
-            </a>
-            <a href="#contato" className="text-gray-700 hover:text-orange-500 transition text-sm lg:text-base">
-              Contato
-            <a
-              href="/loja"
-              onClick={() => setMenuOpen(false)}
-              className="block text-gray-700 hover:text-orange-500 transition py-2 font-semibold text-orange-600"
-            >
-              Loja
-            </a>
-            </a>
             <a href="/loja" className="text-gray-700 hover:text-orange-500 transition text-sm lg:text-base font-semibold">
               Loja
             </a>
           </div>
-
           <div className="flex items-center gap-2 sm:gap-3">
             <a
               href="/login"
