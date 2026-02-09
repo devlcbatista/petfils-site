@@ -100,7 +100,7 @@ Enviado via site PetFils
     // Simular delay de envio
     setTimeout(() => {
       const mensagem = gerarMensagemWhatsApp();
-      const numeroWhatsApp = "5527999999999"; // Número da PetFils
+      const numeroWhatsApp = "552799261948"; // Número da PetFils
       const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
 
       // Abrir WhatsApp em nova aba
