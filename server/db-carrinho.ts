@@ -297,3 +297,135 @@ export async function obterProdutosRecomendados(produtoId: number, limite: numbe
 
   return recomendados;
 }
+
+/**
+ * Buscar produtos por termo de busca
+ */
+export async function buscarProdutos(termo: string) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const resultados = await db
+    .select()
+    .from(produtos)
+    .where(
+      and(
+        eq(produtos.ativo, true),
+        sql`(${produtos.nome} LIKE ${`%${termo}%`} OR ${produtos.descricao} LIKE ${`%${termo}%`})`
+      )
+    );
+
+  return resultados;
+}
+
+/**
+ * Obter produtos com filtros avançados
+ */
+export async function obterProdutosComFiltros(
+  categoria?: string,
+  precoMin?: number,
+  precoMax?: number,
+  ordenacao?: 'preco_asc' | 'preco_desc' | 'nome_asc' | 'nome_desc'
+) {
+  const db = await getDb();
+  if (!db) return [];
+
+  let query = db
+    .select()
+    .from(produtos)
+    .where(eq(produtos.ativo, true));
+
+  if (categoria) {
+    query = db
+      .select()
+      .from(produtos)
+      .where(and(eq(produtos.ativo, true), eq(produtos.categoria, categoria)));
+  }
+
+  // Aplicar filtro de preço
+  if (precoMin !== undefined || precoMax !== undefined) {
+    const conditions = [];
+    if (precoMin !== undefined) {
+      conditions.push(sql`${produtos.preco} >= ${precoMin}`);
+    }
+    if (precoMax !== undefined) {
+      conditions.push(sql`${produtos.preco} <= ${precoMax}`);
+    }
+    
+    if (categoria) {
+      query = db
+        .select()
+        .from(produtos)
+        .where(
+          and(
+            eq(produtos.ativo, true),
+            eq(produtos.categoria, categoria),
+            ...conditions
+          )
+        );
+    } else {
+      query = db
+        .select()
+        .from(produtos)
+        .where(and(eq(produtos.ativo, true), ...conditions));
+    }
+  }
+
+  // Aplicar ordenação
+  if (ordenacao === 'preco_asc') {
+    return query.orderBy(sql`${produtos.preco} ASC`);
+  } else if (ordenacao === 'preco_desc') {
+    return query.orderBy(sql`${produtos.preco} DESC`);
+  } else if (ordenacao === 'nome_asc') {
+    return query.orderBy(sql`${produtos.nome} ASC`);
+  } else if (ordenacao === 'nome_desc') {
+    return query.orderBy(sql`${produtos.nome} DESC`);
+  }
+
+  return query;
+}
+
+/**
+ * Obter categorias únicas de produtos
+ */
+export async function obterCategorias() {
+  const db = await getDb();
+  if (!db) return [];
+
+  const resultado = await db
+    .selectDistinct({ categoria: produtos.categoria })
+    .from(produtos)
+    .where(eq(produtos.ativo, true));
+
+  return resultado.map(r => r.categoria);
+}
+
+/**
+ * Obter estatísticas de vendas
+ */
+export async function obterEstatisticasVendas() {
+  const db = await getDb();
+  if (!db) return null;
+
+  const totalProdutos = await db
+    .select({ count: sql`COUNT(*)` })
+    .from(produtos)
+    .where(eq(produtos.ativo, true));
+
+  const produtosMaisVendidos = await db
+    .select({
+      produtoId: itensPedido.produtoId,
+      nome: produtos.nome,
+      quantidade: sql`SUM(${itensPedido.quantidade})`,
+    })
+    .from(itensPedido)
+    .leftJoin(produtos, eq(itensPedido.produtoId, produtos.id))
+    .groupBy(itensPedido.produtoId)
+    .orderBy(sql`SUM(${itensPedido.quantidade}) DESC`)
+    .limit(10);
+
+  return {
+    totalProdutos: (totalProdutos[0] as any)?.count || 0,
+    produtosMaisVendidos,
+  };
+}

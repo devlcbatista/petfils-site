@@ -12,6 +12,10 @@ import {
   obterProdutos,
   obterProduto,
   obterProdutosRecomendados,
+  buscarProdutos,
+  obterProdutosComFiltros,
+  obterCategorias,
+  obterEstatisticasVendas,
 } from "./db-carrinho";
 
 export const carrinhoRouter = router({
@@ -206,4 +210,48 @@ export const carrinhoRouter = router({
     .query(async ({ input }) => {
       return obterProdutosRecomendados(input.produtoId, input.limite || 4);
     }),
+
+  /**
+   * Buscar produtos por termo
+   */
+  buscarProdutos: publicProcedure
+    .input(z.object({ termo: z.string().min(1) }))
+    .query(async ({ input }) => {
+      return buscarProdutos(input.termo);
+    }),
+
+  /**
+   * Obter produtos com filtros avançados
+   */
+  obterProdutosComFiltros: publicProcedure
+    .input(
+      z.object({
+        categoria: z.string().optional(),
+        precoMin: z.number().optional(),
+        precoMax: z.number().optional(),
+        ordenacao: z.enum(['preco_asc', 'preco_desc', 'nome_asc', 'nome_desc']).optional(),
+      })
+    )
+    .query(async ({ input }) => {
+      return obterProdutosComFiltros(
+        input.categoria,
+        input.precoMin,
+        input.precoMax,
+        input.ordenacao
+      );
+    }),
+
+  /**
+   * Obter categorias de produtos
+   */
+  obterCategoriasLista: publicProcedure.query(async () => {
+    return obterCategorias();
+  }),
+
+  /**
+   * Obter estatísticas de vendas
+   */
+  obterEstatisticas: publicProcedure.query(async () => {
+    return obterEstatisticasVendas();
+  }),
 });
