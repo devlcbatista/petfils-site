@@ -29,6 +29,13 @@
       "when": 1770599888770,
       "tag": "0003_public_wallow",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1770662969160,
+      "tag": "0004_sloppy_tag",
+      "breakpoints": true
     }
   ]
 }

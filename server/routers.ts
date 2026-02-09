@@ -9,6 +9,7 @@ import { estoqueRouter } from "./routers-estoque";
 import { relatoriosRouter } from "./routers-relatorios";
 import { clientesRouter } from "./routers-clientes";
 import { perfilRouter } from "./routers-perfil";
+import { carrinhoRouter } from "./routers-carrinho";
 
 // Schema de validação para agendamento
 const agendamentoSchema = z.object({
@@ -33,6 +34,7 @@ export const appRouter = router({
   relatorios: relatoriosRouter,
   clientes: clientesRouter,
   perfil: perfilRouter,
+  carrinho: carrinhoRouter,
   
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),

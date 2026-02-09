@@ -241,3 +241,21 @@ export const itensPedido = mysqlTable("itens_pedido", {
 
 export type ItemPedido = typeof itensPedido.$inferSelect;
 export type InsertItemPedido = typeof itensPedido.$inferInsert;
+
+
+/**
+ * Carrinho de Compras
+ * Armazena itens temporários no carrinho do cliente
+ */
+export const carrinho = mysqlTable("carrinho", {
+  id: int("id").autoincrement().primaryKey(),
+  usuarioClienteId: int("usuarioClienteId").notNull(),
+  produtoId: int("produtoId").notNull(),
+  quantidade: int("quantidade").notNull(),
+  precoUnitario: decimal("precoUnitario", { precision: 10, scale: 2 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type CarrinhoItem = typeof carrinho.$inferSelect;
+export type InsertCarrinhoItem = typeof carrinho.$inferInsert;

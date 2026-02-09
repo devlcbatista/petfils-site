@@ -11,6 +11,8 @@ import Relatorios from "./pages/Relatorios";
 import Login from "./pages/Login";
 import Registro from "./pages/Registro";
 import MinhaConta from "./pages/MinhaConta";
+import Loja from "./pages/Loja";
+import Carrinho from "./pages/Carrinho";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -24,6 +26,8 @@ function Router() {
       <Route path={"/estoque"} component={Estoque} />
       <Route path={"/relatorios"} component={Relatorios} />
       <Route path={"/minha-conta"} component={MinhaConta} />
+      <Route path={"/loja"} component={Loja} />
+      <Route path={"/carrinho"} component={Carrinho} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
