@@ -46,6 +46,16 @@ export default function Home() {
             </a>
             <a href="#contato" className="text-gray-700 hover:text-orange-500 transition text-sm lg:text-base">
               Contato
+            <a
+              href="/loja"
+              onClick={() => setMenuOpen(false)}
+              className="block text-gray-700 hover:text-orange-500 transition py-2 font-semibold text-orange-600"
+            >
+              Loja
+            </a>
+            </a>
+            <a href="/loja" className="text-gray-700 hover:text-orange-500 transition text-sm lg:text-base font-semibold">
+              Loja
             </a>
           </div>
 
@@ -118,6 +128,13 @@ export default function Home() {
               className="block text-gray-700 hover:text-orange-500 transition py-2"
             >
               Contato
+            <a
+              href="/loja"
+              onClick={() => setMenuOpen(false)}
+              className="block text-gray-700 hover:text-orange-500 transition py-2 font-semibold text-orange-600"
+            >
+              Loja
+            </a>
             </a>
             <hr className="my-2" />
             <a
@@ -354,10 +371,24 @@ export default function Home() {
       </section>
 
       {/* Contato */}
+            <a
+              href="/loja"
+              onClick={() => setMenuOpen(false)}
+              className="block text-gray-700 hover:text-orange-500 transition py-2 font-semibold text-orange-600"
+            >
+              Loja
+            </a>
       <section id="contato" className="py-8 sm:py-16 md:py-24 bg-white">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4">Entre em Contato</h2>
+            <a
+              href="/loja"
+              onClick={() => setMenuOpen(false)}
+              className="block text-gray-700 hover:text-orange-500 transition py-2 font-semibold text-orange-600"
+            >
+              Loja
+            </a>
             <p className="text-base sm:text-lg text-gray-600">Estamos prontos para atender você e seu pet</p>
           </div>
 
