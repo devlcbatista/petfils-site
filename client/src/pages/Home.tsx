@@ -1,13 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { MapPin, Phone, Clock, Star, Heart, Zap, Menu, X, ShoppingCart } from "lucide-react";
+import { MapPin, Phone, Clock, Star, Heart, Zap, Menu, X } from "lucide-react";
 import { useState } from "react";
 import AgendamentoForm from "@/components/AgendamentoForm";
 import GaleriaAntesDepois from "@/components/GaleriaAntesDepois";
 import { useAuth } from "@/_core/hooks/useAuth";
-import { useLocation } from "wouter";
-import { trpc } from "@/lib/trpc";
-import { toast } from "sonner";
 
 /**
  * Design: Warm & Playful
@@ -20,26 +17,6 @@ export default function Home() {
   const [activeService, setActiveService] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const { user } = useAuth();
-  const [, setLocation] = useLocation();
-  
-  // Obter produtos em destaque
-  const { data: produtos = [] } = trpc.carrinho.obterProdutos.useQuery({});
-  const adicionarAoCarrinhoMutation = trpc.carrinho.adicionarAoCarrinho.useMutation();
-  
-  const handleAdicionarAoCarrinho = async (produtoId: number, nomeProduto: string) => {
-    try {
-      await adicionarAoCarrinhoMutation.mutateAsync({
-        produtoId,
-        quantidade: 1,
-      });
-      toast.success(`${nomeProduto} adicionado ao carrinho!`);
-    } catch (error: any) {
-      toast.error(error.message || "Erro ao adicionar ao carrinho");
-    }
-  };
-  
-  // Produtos em destaque (primeiros 6)
-  const produtosDestaque = produtos.slice(0, 6);
 
   return (
     <div className="min-h-screen bg-white">
@@ -472,60 +449,3 @@ export default function Home() {
     </div>
   );
 }
-
-      {/* Produtos em Destaque */}
-      <section id="destaque" className="py-8 sm:py-16 md:py-24 bg-gradient-to-b from-orange-50 to-white">
-        <div className="container px-4 sm:px-6">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4">Produtos em Destaque</h2>
-            <p className="text-base sm:text-lg text-gray-600">Conheça nossos produtos mais populares</p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
-            {produtosDestaque.map((produto) => (
-              <Card key={produto.id} className="bg-white border-0 shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-                <div className="bg-gray-100 h-40 flex items-center justify-center">
-                  <div className="bg-gradient-to-br from-orange-100 to-pink-100 w-full h-full flex items-center justify-center">
-                    <ShoppingCart className="w-12 h-12 text-gray-300" />
-                  </div>
-                </div>
-                <div className="p-4">
-                  <p className="text-xs font-semibold text-orange-600 uppercase mb-1">{produto.categoria}</p>
-                  <h4 className="font-semibold text-gray-800 mb-2 line-clamp-2 h-10">{produto.nome}</h4>
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-xl font-bold text-orange-600 mb-3">R$ {parseFloat(produto.preco.toString()).toFixed(2)}</p>
-                  <div className="space-y-2">
-                    <Button
-                      onClick={() => setLocation(`/produto/${produto.id}`)}
-                      className="w-full bg-orange-500 hover:bg-orange-600 text-white text-sm"
-                    >
-                      Ver Detalhes
-                    </Button>
-                    <Button
-                      onClick={() => handleAdicionarAoCarrinho(produto.id, produto.nome)}
-                      variant="outline"
-                      className="w-full border-orange-500 text-orange-600 hover:bg-orange-50 text-sm"
-                    >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      Adicionar
-                    </Button>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-          
-          <div className="text-center">
-            <Button
-              onClick={() => setLocation("/loja")}
-              className="bg-orange-500 hover:bg-orange-600 text-white px-6 sm:px-8 py-2 sm:py-3"
-            >
-              Ver Todos os Produtos
-            </Button>
-          </div>
-        </div>
-      </section>
