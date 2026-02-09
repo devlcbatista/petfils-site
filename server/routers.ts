@@ -5,6 +5,7 @@ import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import { criarAgendamento, obterAgendamentos, obterAgendamentosPendentes, contarAgendamentosPorStatus, atualizarStatusAgendamento, deletarAgendamento } from "./db-agendamentos";
 import { dashboardRouter } from "./routers-dashboard";
+import { estoqueRouter } from "./routers-estoque";
 
 // Schema de validação para agendamento
 const agendamentoSchema = z.object({
@@ -25,6 +26,7 @@ export const appRouter = router({
   // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
   dashboard: dashboardRouter,
+  estoque: estoqueRouter,
   
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
