@@ -1,4 +1,4 @@
-import { eq, and } from "drizzle-orm";
+import { eq, and, sql } from "drizzle-orm";
 import { getDb } from "./db";
 import { carrinho, produtos, itensPedido, pedidos } from "../drizzle/schema";
 
@@ -268,4 +268,32 @@ export async function obterProduto(produtoId: number) {
     .limit(1);
 
   return resultado.length > 0 ? resultado[0] : null;
+}
+
+/**
+ * Obter produtos recomendados baseado em um produto específico
+ * Retorna produtos da mesma categoria e complementares
+ */
+export async function obterProdutosRecomendados(produtoId: number, limite: number = 4) {
+  const db = await getDb();
+  if (!db) return [];
+
+  // Obter o produto atual para saber a categoria
+  const produtoAtual = await obterProduto(produtoId);
+  if (!produtoAtual) return [];
+
+  // Obter produtos da mesma categoria (excluindo o produto atual)
+  const recomendados = await db
+    .select()
+    .from(produtos)
+    .where(
+      and(
+        eq(produtos.ativo, true),
+        eq(produtos.categoria, produtoAtual.categoria),
+        sql`${produtos.id} != ${produtoId}`
+      )
+    )
+    .limit(limite);
+
+  return recomendados;
 }

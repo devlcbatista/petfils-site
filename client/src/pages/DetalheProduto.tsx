@@ -21,6 +21,12 @@ export default function DetalheProduto() {
     { enabled: !!produtoId }
   );
 
+  // Obter produtos recomendados
+  const { data: produtosRecomendados = [] } = trpc.carrinho.obterProdutosRecomendados.useQuery(
+    { produtoId: produtoId || 0, limite: 4 },
+    { enabled: !!produtoId }
+  );
+
   // Adicionar ao carrinho
   const adicionarAoCarrinhoMutation = trpc.carrinho.adicionarAoCarrinho.useMutation();
 
@@ -266,26 +272,34 @@ export default function DetalheProduto() {
           </div>
         </div>
 
-        {/* Produtos Relacionados */}
+        {/* Produtos Recomendados */}
         <div className="mt-16">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8">Produtos Relacionados</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <Card key={i} className="bg-white border-0 shadow-md hover:shadow-lg transition-shadow">
-                <div className="bg-gray-100 h-40 flex items-center justify-center rounded-t-lg">
-                  <ShoppingCart className="w-12 h-12 text-gray-400" />
-                </div>
-                <div className="p-4">
-                  <p className="text-sm text-gray-600 mb-2">Categoria</p>
-                  <h3 className="font-semibold text-gray-800 mb-2 line-clamp-2">Produto Relacionado</h3>
-                  <p className="text-2xl font-bold text-orange-600 mb-4">R$ 99.90</p>
-                  <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">
-                    Ver Detalhes
-                  </Button>
-                </div>
-              </Card>
-            ))}
-          </div>
+          <h2 className="text-3xl font-bold text-gray-800 mb-8">Produtos Recomendados</h2>
+          {produtosRecomendados.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {produtosRecomendados.map((prod) => (
+                <Card key={prod.id} className="bg-white border-0 shadow-md hover:shadow-lg transition-shadow">
+                  <div className="bg-gray-100 h-40 flex items-center justify-center rounded-t-lg">
+                    <ShoppingCart className="w-12 h-12 text-gray-400" />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-sm text-gray-600 mb-2">{prod.categoria}</p>
+                    <h3 className="font-semibold text-gray-800 mb-2 line-clamp-2">{prod.nome}</h3>
+                    <p className="text-2xl font-bold text-orange-600 mb-4">
+                      R$ {parseFloat(prod.preco.toString()).toFixed(2)}
+                    </p>
+                    <Button onClick={() => setLocation(`/produto/${prod.id}`)} className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+                      Ver Detalhes
+                    </Button>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <Card className="bg-white border-0 shadow-lg p-8 text-center">
+              <p className="text-gray-600">Nenhum produto recomendado</p>
+            </Card>
+          )}
         </div>
       </div>
     </div>

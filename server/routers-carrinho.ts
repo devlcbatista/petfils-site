@@ -11,6 +11,7 @@ import {
   finalizarPedido,
   obterProdutos,
   obterProduto,
+  obterProdutosRecomendados,
 } from "./db-carrinho";
 
 export const carrinhoRouter = router({
@@ -195,5 +196,14 @@ export const carrinhoRouter = router({
     .input(z.object({ produtoId: z.number() }))
     .query(async ({ input }) => {
       return obterProduto(input.produtoId);
+    }),
+
+  /**
+   * Obter produtos recomendados baseado em um produto
+   */
+  obterProdutosRecomendados: protectedProcedure
+    .input(z.object({ produtoId: z.number(), limite: z.number().optional() }))
+    .query(async ({ input }) => {
+      return obterProdutosRecomendados(input.produtoId, input.limite || 4);
     }),
 });
