@@ -13,6 +13,7 @@ import Registro from "./pages/Registro";
 import MinhaConta from "./pages/MinhaConta";
 import Loja from "./pages/Loja";
 import Carrinho from "./pages/Carrinho";
+import DetalheProduto from "./pages/DetalheProduto";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -28,6 +29,7 @@ function Router() {
       <Route path={"/minha-conta"} component={MinhaConta} />
       <Route path={"/loja"} component={Loja} />
       <Route path={"/carrinho"} component={Carrinho} />
+      <Route path={"/produto/:id"} component={DetalheProduto} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

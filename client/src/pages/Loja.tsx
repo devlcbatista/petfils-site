@@ -168,23 +168,32 @@ export default function Loja() {
                   </div>
 
                   {/* Botão */}
-                  <Button
-                    onClick={() => handleAdicionarAoCarrinho(produto.id, produto.nome)}
-                    disabled={produto.estoque === 0 || adicionarAoCarrinhoMutation.isPending}
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white disabled:bg-gray-400"
-                  >
-                    {adicionarAoCarrinhoMutation.isPending ? (
-                      <span className="flex items-center gap-2">
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                        Adicionando...
-                      </span>
-                    ) : (
-                      <span className="flex items-center gap-2">
-                        <ShoppingCart className="w-4 h-4" />
-                        Adicionar ao Carrinho
-                      </span>
-                    )}
-                  </Button>
+                  <div className="space-y-2">
+                    <Button
+                      onClick={() => handleAdicionarAoCarrinho(produto.id, produto.nome)}
+                      disabled={produto.estoque === 0 || adicionarAoCarrinhoMutation.isPending}
+                      className="w-full bg-orange-500 hover:bg-orange-600 text-white disabled:bg-gray-400"
+                    >
+                      {adicionarAoCarrinhoMutation.isPending ? (
+                        <span className="flex items-center gap-2">
+                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                          Adicionando...
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-2">
+                          <ShoppingCart className="w-4 h-4" />
+                          Adicionar ao Carrinho
+                        </span>
+                      )}
+                    </Button>
+                    <Button
+                      onClick={() => setLocation(`/produto/${produto.id}`)}
+                      variant="outline"
+                      className="w-full border-orange-500 text-orange-600 hover:bg-orange-50"
+                    >
+                      Ver Detalhes
+                    </Button>
+                  </div>
                 </div>
               </Card>
             ))}
