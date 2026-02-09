@@ -10,6 +10,7 @@ import Estoque from "./pages/Estoque";
 import Relatorios from "./pages/Relatorios";
 import Login from "./pages/Login";
 import Registro from "./pages/Registro";
+import MinhaConta from "./pages/MinhaConta";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -22,6 +23,7 @@ function Router() {
       <Route path={"/dashboard"} component={Dashboard} />
       <Route path={"/estoque"} component={Estoque} />
       <Route path={"/relatorios"} component={Relatorios} />
+      <Route path={"/minha-conta"} component={MinhaConta} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
