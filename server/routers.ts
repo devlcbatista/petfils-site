@@ -7,6 +7,7 @@ import { criarAgendamento, obterAgendamentos, obterAgendamentosPendentes, contar
 import { dashboardRouter } from "./routers-dashboard";
 import { estoqueRouter } from "./routers-estoque";
 import { relatoriosRouter } from "./routers-relatorios";
+import { clientesRouter } from "./routers-clientes";
 
 // Schema de validação para agendamento
 const agendamentoSchema = z.object({
@@ -29,6 +30,7 @@ export const appRouter = router({
   dashboard: dashboardRouter,
   estoque: estoqueRouter,
   relatorios: relatoriosRouter,
+  clientes: clientesRouter,
   
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),

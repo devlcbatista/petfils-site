@@ -182,3 +182,62 @@ export const alertasEstoque = mysqlTable("alertas_estoque", {
 
 export type AlertaEstoque = typeof alertasEstoque.$inferSelect;
 export type InsertAlertaEstoque = typeof alertasEstoque.$inferInsert;
+
+/**
+ * Usuários Clientes (Login)
+ * Armazena contas de clientes para login e gerenciamento de pedidos
+ */
+export const usuariosClientes = mysqlTable("usuarios_clientes", {
+  id: int("id").autoincrement().primaryKey(),
+  email: varchar("email", { length: 320 }).notNull().unique(),
+  senha: varchar("senha", { length: 255 }).notNull(), // Hash da senha
+  nome: varchar("nome", { length: 255 }).notNull(),
+  telefone: varchar("telefone", { length: 20 }),
+  endereco: text("endereco"),
+  cidade: varchar("cidade", { length: 100 }),
+  estado: varchar("estado", { length: 2 }),
+  cep: varchar("cep", { length: 10 }),
+  ativo: boolean("ativo").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type UsuarioCliente = typeof usuariosClientes.$inferSelect;
+export type InsertUsuarioCliente = typeof usuariosClientes.$inferInsert;
+
+/**
+ * Pedidos
+ * Armazena pedidos de produtos dos clientes
+ */
+export const pedidos = mysqlTable("pedidos", {
+  id: int("id").autoincrement().primaryKey(),
+  usuarioClienteId: int("usuarioClienteId").notNull(),
+  numeroPedido: varchar("numeroPedido", { length: 50 }).notNull().unique(),
+  status: mysqlEnum("status", ["pendente", "confirmado", "enviado", "entregue", "cancelado"]).default("pendente").notNull(),
+  totalPedido: decimal("totalPedido", { precision: 10, scale: 2 }).notNull(),
+  dataEntrega: timestamp("dataEntrega"),
+  endereco: text("endereco"),
+  observacoes: text("observacoes"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Pedido = typeof pedidos.$inferSelect;
+export type InsertPedido = typeof pedidos.$inferInsert;
+
+/**
+ * Itens do Pedido
+ * Armazena os produtos dentro de cada pedido
+ */
+export const itensPedido = mysqlTable("itens_pedido", {
+  id: int("id").autoincrement().primaryKey(),
+  pedidoId: int("pedidoId").notNull(),
+  produtoId: int("produtoId").notNull(),
+  quantidade: int("quantidade").notNull(),
+  precoUnitario: decimal("precoUnitario", { precision: 10, scale: 2 }).notNull(),
+  subtotal: decimal("subtotal", { precision: 10, scale: 2 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ItemPedido = typeof itensPedido.$inferSelect;
+export type InsertItemPedido = typeof itensPedido.$inferInsert;
