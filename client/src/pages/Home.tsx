@@ -51,6 +51,18 @@ export default function Home() {
 
           <div className="flex items-center gap-2 sm:gap-3">
             <a
+              href="/login"
+              className="hidden sm:inline-block text-gray-700 hover:text-orange-500 transition text-xs lg:text-sm font-semibold px-3 py-2 rounded-lg hover:bg-orange-50"
+            >
+              Login
+            </a>
+            <a
+              href="/admin"
+              className="hidden sm:inline-block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-3 lg:px-4 py-2 rounded-full transition transform hover:scale-105 text-xs lg:text-sm font-semibold whitespace-nowrap"
+            >
+              Admin
+            </a>
+            <a
               href="https://wa.me/552799261948"
               target="_blank"
               rel="noopener noreferrer"
@@ -106,6 +118,21 @@ export default function Home() {
               className="block text-gray-700 hover:text-orange-500 transition py-2"
             >
               Contato
+            </a>
+            <hr className="my-2" />
+            <a
+              href="/login"
+              onClick={() => setMenuOpen(false)}
+              className="block text-gray-700 hover:text-orange-500 transition py-2 font-semibold"
+            >
+              Login de Cliente
+            </a>
+            <a
+              href="/admin"
+              onClick={() => setMenuOpen(false)}
+              className="block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 rounded-lg font-semibold text-center hover:from-purple-600 hover:to-pink-600 transition"
+            >
+              Painel Admin
             </a>
           </div>
         )}

@@ -8,12 +8,17 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Estoque from "./pages/Estoque";
 import Relatorios from "./pages/Relatorios";
+import Login from "./pages/Login";
+import Registro from "./pages/Registro";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/login"} component={Login} />
+      <Route path={"/registro"} component={Registro} />
+      <Route path={"/admin"} component={Dashboard} />
       <Route path={"/dashboard"} component={Dashboard} />
       <Route path={"/estoque"} component={Estoque} />
       <Route path={"/relatorios"} component={Relatorios} />
