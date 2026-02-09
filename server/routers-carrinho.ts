@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { protectedProcedure, router } from "./_core/trpc";
+import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import {
   obterCarrinho,
   adicionarAoCarrinho,
@@ -183,7 +183,7 @@ export const carrinhoRouter = router({
   /**
    * Obter lista de produtos
    */
-  obterProdutos: protectedProcedure
+  obterProdutos: publicProcedure
     .input(z.object({ categoria: z.string().optional() }))
     .query(async ({ input }) => {
       return obterProdutos(input.categoria);
@@ -192,7 +192,7 @@ export const carrinhoRouter = router({
   /**
    * Obter um produto específico
    */
-  obterProduto: protectedProcedure
+  obterProduto: publicProcedure
     .input(z.object({ produtoId: z.number() }))
     .query(async ({ input }) => {
       return obterProduto(input.produtoId);
@@ -201,7 +201,7 @@ export const carrinhoRouter = router({
   /**
    * Obter produtos recomendados baseado em um produto
    */
-  obterProdutosRecomendados: protectedProcedure
+  obterProdutosRecomendados: publicProcedure
     .input(z.object({ produtoId: z.number(), limite: z.number().optional() }))
     .query(async ({ input }) => {
       return obterProdutosRecomendados(input.produtoId, input.limite || 4);

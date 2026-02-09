@@ -1,0 +1,50 @@
+{
+  "query": "SELECT COUNT(*) as total, categoria FROM produtos GROUP BY categoria;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 29KzUVvyjgHuR5q.root --database JRSdSs7KawRAfg9K8FjeQV --execute SELECT COUNT(*) as total, categoria FROM produtos GROUP BY categoria;",
+  "rows": [
+    {
+      "total": "1",
+      "categoria": "Comedouros e Bebedouros"
+    },
+    {
+      "total": "3",
+      "categoria": "Acessórios"
+    },
+    {
+      "total": "1",
+      "categoria": "Camas e Casinhas"
+    },
+    {
+      "total": "1",
+      "categoria": "Petiscos"
+    },
+    {
+      "total": "2",
+      "categoria": "Rações"
+    },
+    {
+      "total": "1",
+      "categoria": "Higiene"
+    },
+    {
+      "total": "1",
+      "categoria": "Roupas"
+    },
+    {
+      "total": "1",
+      "categoria": "Acessórios para Gatos"
+    },
+    {
+      "total": "1",
+      "categoria": "Higiene e Limpeza"
+    },
+    {
+      "total": "3",
+      "categoria": "Brinquedos"
+    }
+  ],
+  "messages": [],
+  "stdout": "total\tcategoria\n1\tComedouros e Bebedouros\n3\tAcessórios\n1\tCamas e Casinhas\n1\tPetiscos\n2\tRações\n1\tHigiene\n1\tRoupas\n1\tAcessórios para Gatos\n1\tHigiene e Limpeza\n3\tBrinquedos\n",
+  "stderr": "",
+  "execution_time_ms": 61
+}
