@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO servicos (nome, descricao, preco, duracao, ativo) VALUES\n('Banho e Tosa', 'Banho completo com tosa higiênica', 80.00, 120, true),\n('Tosa Higiênica', 'Tosa apenas das áreas de higiene', 40.00, 60, true),\n('Banho', 'Banho completo com secagem', 50.00, 60, true),\n('Consulta Veterinária', 'Consulta com veterinário', 100.00, 30, true),\n('Vacinação', 'Aplicação de vacinas', 60.00, 15, true),\n('Limpeza de Ouvidos', 'Limpeza profissional de ouvidos', 30.00, 20, true),\n('Corte de Unhas', 'Corte e lixamento de unhas', 25.00, 15, true),\n('Escovação Profissional', 'Escovação e hidratação', 45.00, 45, true);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 29KzUVvyjgHuR5q.root --database JRSdSs7KawRAfg9K8FjeQV --execute INSERT INTO servicos (nome, descricao, preco, duracao, ativo) VALUES\n('Banho e Tosa', 'Banho completo com tosa higiênica', 80.00, 120, true),\n('Tosa Higiênica', 'Tosa apenas das áreas de higiene', 40.00, 60, true),\n('Banho', 'Banho completo com secagem', 50.00, 60, true),\n('Consulta Veterinária', 'Consulta com veterinário', 100.00, 30, true),\n('Vacinação', 'Aplicação de vacinas', 60.00, 15, true),\n('Limpeza de Ouvidos', 'Limpeza profissional de ouvidos', 30.00, 20, true),\n('Corte de Unhas', 'Corte e lixamento de unhas', 25.00, 15, true),\n('Escovação Profissional', 'Escovação e hidratação', 45.00, 45, true);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 131
+}
